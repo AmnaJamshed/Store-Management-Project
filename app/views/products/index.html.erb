@@ -1,7 +1,8 @@
 <h1>Listing products</h1>
-
-<table>
+<%= paginate @products %>
+<table cellspacing='20'>
   <tr>
+    <th>Id</th>
     <th>Name</th>
     <th>Content</th>
     <th>Price</th>
@@ -12,6 +13,7 @@
 
 <% @products.each do |product| %>
   <tr>
+    <td><%= product.id %></td>
     <td><%= product.name %></td>
     <td><%= product.content %></td>
     <td><%= product.price %></td>
@@ -25,3 +27,6 @@
 <br />
 
 <%= link_to 'New Product', new_product_path %>
+
+
+
