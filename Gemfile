@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'paperclip'
+gem "nested_form"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
