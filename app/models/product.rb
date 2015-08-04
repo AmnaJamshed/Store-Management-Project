@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :content, :name, :price, :attachments_attributes
+  PER_PAGE_NUMBER = 3
 
   has_many :attachments, as: :attachable
 
