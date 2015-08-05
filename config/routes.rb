@@ -1,8 +1,13 @@
 Store::Application.routes.draw do
 
+  resources :reviews
+
   devise_for :users
 
-  resources :products
+  resources :users
+  resources :products do
+    resources :reviews, only: [:create]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

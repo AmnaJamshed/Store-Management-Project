@@ -14,10 +14,15 @@
   <b>Price:</b>
   <%= @product.price %>
 </p>
-<% @product.attachments.each do |attachment| %>
-<%= image_tag attachment.photo.url(:medium) %>
+<% @attachments.each do |attachment| %>
+  <%= image_tag attachment.photo.url(:medium) %>
 <% end %>
 
+<h2>Review:</h2>
+<%= render @reviews %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<h2>Add a review:</h2>
+<%= render "reviews/form" %>
+
+<%= link_to 'Edit Product', edit_product_path(@product) %> |
+<%= link_to 'Back to Products', products_path %>

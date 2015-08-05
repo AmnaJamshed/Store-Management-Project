@@ -15,6 +15,9 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    @review = Review.new
+    @reviews = @product.reviews
+    @attachments = @product.attachments
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +39,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:product_id])
   end
 
   # POST /products

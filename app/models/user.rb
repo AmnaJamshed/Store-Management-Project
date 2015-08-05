@@ -3,4 +3,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  has_many :posts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
