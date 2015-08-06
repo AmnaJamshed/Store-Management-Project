@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-  attr_accessible :content, :name, :price, :attachments_attributes
-  PER_PAGE_NUMBER = 3
+  attr_accessible :content, :name, :price, :user_id, :attachments_attributes
+  PER_PAGE_NUMBER = 20
 
   has_many :attachments, as: :attachable
 
