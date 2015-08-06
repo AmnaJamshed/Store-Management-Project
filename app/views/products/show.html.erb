@@ -14,12 +14,19 @@
   <b>Price:</b>
   <%= @product.price %>
 </p>
+
+<p>
+  <b>User:</b>
+  <%= @product.user_id %>
+</p>
 <% @attachments.each do |attachment| %>
   <%= image_tag attachment.photo.url(:medium) %>
 <% end %>
 
 <h2>Review:</h2>
-<%= render @reviews %>
+<div class="product-review">
+  <%= render @reviews %>
+</div>
 
 <h2>Add a review:</h2>
 <%= render "reviews/form" %>

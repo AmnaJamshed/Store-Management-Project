@@ -4,10 +4,15 @@ class ReviewsController < ApplicationController
   def create
     @review = @product.reviews.new(params[:review])
     @review.user_id = current_user.id
-    if @review.save
-      redirect_to @product, notice: "Added review."
-    else
-      render :new
+
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to @product, notice: "Thank you for reviewing this product"}
+        format.js
+      else
+        format.html { render action: :new }
+        format.js
+      end
     end
   end
 
