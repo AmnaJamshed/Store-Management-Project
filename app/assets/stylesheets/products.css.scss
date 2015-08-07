@@ -1,18 +1,23 @@
 body {
-  background-color: #C0C0C0;
-  color: #C71585;
+  color: #800000;
   font-family: cursive, arial, helvetica, sans-serif;
   font-size: 20px;
   line-height: 18px;
   margin: 20px;
   padding: 20px;
+  margin-bottom: 1cm;
+  background: url(abc.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
 }
 
-p, ol, ul, td {
+ol, ul, td {
   font-family: cursive, arial, helvetica, sans-serif;
   font-size: 20px;
   line-height: 18px;
-  color: #008B8B;
+  color: #696969;
 }
 
 pre {
@@ -21,16 +26,18 @@ pre {
   font-size: 20px;
 }
 
+p, strong {
+  font-family: cursive, arial, helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 18px;
+  color: #800000;
+}
+
 a {
   color: #000;
 
   &:visited {
-    color: #C71585;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #696969;
   }
 }
 
@@ -88,4 +95,8 @@ ul.hmenu li {
 
 .list-products td {
   padding: 15px;
+}
+
+.min-image-height {
+  height: 46px;
 }

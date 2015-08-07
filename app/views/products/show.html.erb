@@ -1,26 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Product -%>
+<div class="page-header">
+  <h1><%=t '.title', default: :model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @product.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  <dd><%= @product.content %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @product.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @product.user.email%></dd>
+</dl>
 
-<p>
-  <b>Content:</b>
-  <%= @product.content %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @product.user_id %>
-</p>
 <% @attachments.each do |attachment| %>
-  <%= image_tag attachment.photo.url(:medium) %>
+ <%= image_tag attachment.photo.url(:medium) %>
 <% end %>
 
 <h2>Review:</h2>
@@ -31,5 +26,7 @@
 <h2>Add a review:</h2>
 <%= render "reviews/form" %>
 
-<%= link_to 'Edit Product', edit_product_path(@product) %> |
-<%= link_to 'Back to Products', products_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              products_path, :class => 'btn'  %>
+</div>

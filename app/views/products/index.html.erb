@@ -1,35 +1,65 @@
-<h1>Culinary Products</h1>
-<%= paginate @products %>
-<table class="list-products">
-  <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th>Price</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%- model_class = Product -%>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.content %></td>
-    <td><%= product.price %></td>
-    <td><%= product.user.email %></td>
-    <td><%= link_to 'Show', product %></td>
-    <% if product.user == current_user %>
-      <td><%= link_to 'Edit', edit_product_path(product) %></td>
-      <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+        <img src="https://pbs.twimg.com/profile_images/2308365558/CD_favicon_large_bigger.gif" alt="Responsive image" class="img-circle pull-left min-image-height">
+      <a class="brand"> Kitchen Krafts</a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+          <li><%= link_to "Browse Products", products_path %></li>
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete  %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header">
+
+  <h1><%=t '.title', default: :model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%= link_to "New Product", new_product_path, class: 'btn btn-default btn-lg pull-right' %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= product.content %></td>
+        <td><%= product.price %></td>
+        <td><%= product.user.email %></td>
+        <td>
+          <% if allowed?(product.user.id) %>
+        <td><%= link_to t('.edit', default: :t("helpers.links.edit")), edit_product_path(product), :class => 'btn btn-default btn-lg' %></td>
+        <td><%= link_to t('.destroy', default: :t("helpers.links.destroy")), product_path(product), method: :delete,data: { confirm: :t('.confirm', :default => t("helpers.links.confirm", default: :'Are you sure?')) }, class: :'btn btn-default btn-lg' %></td>
+        </td>
+      </tr>
+     <% end %>
     <% end %>
-  </tr>
-<% end %>
-
+  </tbody>
 </table>
 
-<br />
+<%= paginate @products %>
 
-<%= link_to 'Add New Product', new_product_path %>
-
-
-
+  <p class="text-justify">
+    <div class="span9">
+      <h2>About Us</h2>
+        <em>
+            Kitchen Krafts, Inc. is a direct merchant of hard-to-find cooking tools, ingredients & supplies for creative cooks. Our product range encompasses the categories: cake decorating, home baking, candy making and home canning supplies. Within each category we offer a full range of tools, supplies, ingredients, books, how-to videos and packaging products.
+       </em>
+    </div>
+  </p>
